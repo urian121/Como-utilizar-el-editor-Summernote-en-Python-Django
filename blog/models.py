@@ -13,10 +13,6 @@ class Post(models.Model):
     def __str__(self):
         return f" {self.title} - {self.is_active} "
 
-    def es_extension_valida(self):
-        extensiones_validas = ['.jpg', '.jpeg', '.png', '.gif']
-        return any(self.foto_empleado.name.lower().endswith(ext) for ext in extensiones_validas)
-
     class Meta:
         db_table = "tbl_posts"
         ordering = ['-created_at']

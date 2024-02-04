@@ -2,7 +2,7 @@
 
 ##### El proyecto "Gestor de Posts con Editor Summernote en Django" se centra en la creación de una aplicación web utilizando el framework Django de Python. El objetivo principal es permitir a los usuarios crear y gestionar publicaciones de manera intuitiva y dinámica mediante el uso del editor de texto enriquecido Summernote.
 
-1.  Crear un entorno virtual, hay muchas formas
+1.  Crear un entorno virtual
 
         Opción 1: Crear entorno virtual con el paquete virtualenv
         Si no tienes instalado virtualenv puedes instalarlo de forma global en el sistema atraves de https://pypi.org/project/virtualenv/
@@ -46,14 +46,12 @@
         archivo settings.py
         INSTALLED_APPS = [
         ----,
-        'blog',  # blog app mi aplicación
+        'blog',
         ]
 
 8.  Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
-    from django.urls import path, include
 
-        from django.conf import settings  # Nuevo
-        from django.conf.urls.static import static  # Nuevo
+        from django.urls import path, include
 
         urlpatterns = [
         path('admin/', admin.site.urls),
@@ -62,6 +60,7 @@
 
 9.  Crear mi Modelo
 
+        class Post(models.Model):
         autor = models.CharField(max_length=200)
         title = models.CharField(max_length=200)
         content = models.TextField()
@@ -103,8 +102,6 @@
 16. Correr archivo requirement.txt para instalar todas las dependencias del proyecto
 
         pip install -r requirements.txt
-
-###### El paquete deep-translator de Python. Este paquete proporciona una interfaz para traducir texto utilizando varios servicios de traducción en línea, como Google Translate, Microsoft Translator, y otros.
 
 #### Resultado final
 
