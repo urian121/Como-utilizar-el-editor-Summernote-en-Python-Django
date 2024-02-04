@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listado de Posts</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'imgs/favicon.png' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-md-center mi_container">
+        <div class="col-md-12">
+          <h1 class="text-center mb-5">
+            Listado de Posts
+            <hr />
+          </h1>
+        </div>
+        {% for post in posts %}
+        <div class="col-md-12 mb-4" style="border-bottom: 1px solid #ccc">
+          <div class="media">
+            <i class="bi bi-person-circle px-2" style="font-size: 30px"></i>
+            <div class="media-body">
+              <h5 class="mt-2">
+                {{ post.autor }}
+                <span class="text-muted" style="font-size: 12px; float: right">
+                  {{ post.created_at|date:"d \d\e M Y" }}
+                </span>
+              </h5>
+              <h1>{{ post.title }}</h1>
+              <p>{{ post.content | safe }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <a href="{% url 'inicio' %}" id="bottomRightButton">
+      <i class="bi bi-arrow-left"></i> Registrar Posts
+    </a>
+  </body>
+</html>

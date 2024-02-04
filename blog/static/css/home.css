@@ -1,0 +1,30 @@
+body {
+  background-color: #f8f9fa;
+}
+.custom_container {
+  background-color: #fff !important;
+  padding: 25px 50px;
+  border-radius: 10px;
+}
+.mi_container {
+  margin: 0 auto;
+  width: 800px;
+  background-color: #fff !important;
+  padding: 25px 50px;
+  border-radius: 10px;
+}
+#bottomRightButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'blog',  # blog app mi aplicación
-    'django_summernote',  # django-summernote paquete de django para el editor de texto
 ]
 
 MIDDLEWARE = [
@@ -80,7 +79,7 @@ WSGI_APPLICATION = 'project_core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # ENGINE es motor de BD
-        'NAME': 'bd_post',
+        'NAME': 'bd_post_django',
                 'USER': 'root',
                 'PASSWORD': '',
                 'HOST': '127.0.0.1',
@@ -128,8 +127,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Configuración para el almacenamiento de imágenes subidas
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

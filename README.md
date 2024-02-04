@@ -1,6 +1,6 @@
-### Creando un Traductor con Python y Django
+### Cómo utilizar el editor Summernote en Django
 
-##### El proyecto "Traductor Multilingüe" busca crear una aplicación web que permita a los usuarios traducir texto entre varios idiomas de manera rápida y sencilla. Utilizando el poder de Python y el marco de desarrollo web Django, este proyecto ofrece una solución eficiente y accesible para las necesidades de traducción de los usuarios.
+##### El proyecto "Gestor de Posts con Editor Summernote en Django" se centra en la creación de una aplicación web utilizando el framework Django de Python. El objetivo principal es permitir a los usuarios crear y gestionar publicaciones de manera intuitiva y dinámica mediante el uso del editor de texto enriquecido Summernote.
 
 1.  Crear un entorno virtual, hay muchas formas
 
@@ -25,15 +25,11 @@
         Nota: para instalar Django en una version especifica
         pip install Django==4.2.4
 
-4.  Instalar el paquete (django-summernote) el cual nos ayudará a traducir el contenido
-
-        pip install django-summernote
-
-5.  Instalar Driver para conectar Gestor de BD MySQL con Django, con el fin de crear una tabla para almacenar los idiomas disponibles
+4.  Instalar Driver para conectar Gestor de BD MySQL con Django, con el fin de crear una tabla para almacenar los idiomas disponibles
 
         pip install mysqlclient
 
-6.  Crear el proyecto con django
+5.  Crear el proyecto con django
 
         `django-admin startproject project_core .`
         El punto . es crucial le dice al script que instale Django en el directorio actual
@@ -41,102 +37,78 @@
         Ya en este punto se puede correr el proyecto que a creado Django,
         python manage.py runserver
 
-7.  Crear mi primera aplicación en Django
+6.  Crear mi primera aplicación en Django
 
         python manage.py startapp blog
 
-8.  Instalar nuestra aplicación (blog) ya creada en el proyecto, en el archivo settings.py
+7.  Instalar nuestra aplicación (blog) ya creada en el proyecto, en el archivo settings.py
 
         archivo settings.py
         INSTALLED_APPS = [
         ----,
         'blog',  # blog app mi aplicación
-        'django_summernote',  # django-summernote paquete de django para el editor de texto
         ]
 
-9.  Se debe añadir la siguiente configuración a tu archivo settings.py para especificar el directorio donde se almacenarán las imágenes subidas
-
-         import os
-         # Configuración para el almacenamiento de imágenes subidas
-         MEDIA_URL = '/media/'
-         MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-10. Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
+8.  Conectar las URLS de mi aplicación con el projecto, para esto vamos al archivo uls.py del projecto
     from django.urls import path, include
 
         from django.conf import settings  # Nuevo
         from django.conf.urls.static import static  # Nuevo
 
-
         urlpatterns = [
         path('admin/', admin.site.urls),
         path('', include('blog.urls')),
-        path("summernote/", include("django_summernote.urls")), # forma parte del paquete summernote
         ]
 
-        # Nuevo
-        if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                                document_root=settings.MEDIA_ROOT)
+9.  Crear mi Modelo
 
-11. Crear mi Modelo
-
-        class Post(models.Model):
+        autor = models.CharField(max_length=200)
         title = models.CharField(max_length=200)
-        content = SummernoteTextField()
-        created_at = models.DateTimeField(auto_now_add=True)
+        content = models.TextField()
+        is_active = models.IntegerField(default=0)
+        created_at = models.DateTimeField(default=timezone.now)
+        updated = models.DateTimeField(auto_now=True)
 
-12. Registrar modelos en el panel de administración
+10. Registrar modelos en el panel de administración
 
         python manage.py createsuperuser
 
-13. Crear las migraciones y correrlas
+11. Crear las migraciones y correrlas
 
         python manage.py makemigrations -> Creando migraciones
         python manage.py migrate         -> Correr migraciones
 
-14. Correr el proyecto
+12. Correr el proyecto
 
         python manage.py runserver
         Revisar la consola y visitar la URL http://127.0.0.1:8000
 
-15. Crear el archivo urls.py en la aplicación (traductor)
+13. Crear el archivo urls.py en la aplicación (traductor)
 
         from django.urls import path
+        from django.utils import timezone
         from . import views
 
                 urlpatterns = [
-                        path('', views.inicio, name='inicio'),
-                        path('registrar_empleado/', views.registrar_empleado,
-                                name='registrar_empleado'),
-                        path('empleados/', views.listar_empleados, name='listar_empleados'),
+                        path('', inicio, name='inicio'),
+                        path('registrar-post/', registrar_post, name='registrar_post'),
+                        path('listar-de-posts/', listar_posts, name='listar_posts'),
                 ]
 
-16. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
+14. Crear la carpeta 'templates' dentro de la aplicación donde estarán mis archivos.html
 
-17. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
+15. Crear la carpeta 'static' dentro de mi aplicacion, aqui estaran archivos
     estaticos (css, js, imagenes, etc..)
 
-18. Correr archivo requirement.txt para instalar todas las dependencias del proyecto
+16. Correr archivo requirement.txt para instalar todas las dependencias del proyecto
 
         pip install -r requirements.txt
-
-19. Información de Paquete
-    https://pypi.org/project/deep-translator/
-
-### Nota, el path en el archivo settings.py del proyecto significa:
-
-        path("summernote/", include("django_summernote.urls")),
-
-        Esta parte define la URL que utilizarás para acceder a las funcionalidades proporcionadas por django-summernote. En este caso, cuando accedas a http://tu_dominio.com/summernote/, estarás accediendo a las funcionalidades de django-summernote.
-
-        include("django_summernote.urls"): Esta parte incluye las URLs proporcionadas por el paquete django-summernote en tu proyecto. Cuando accedes a la ruta summernote/ en tu aplicación Django, el sistema redirige las solicitudes a las URLs definidas en django_summernote.urls.
 
 ###### El paquete deep-translator de Python. Este paquete proporciona una interfaz para traducir texto utilizando varios servicios de traducción en línea, como Google Translate, Microsoft Translator, y otros.
 
 #### Resultado final
 
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/traductor-con-python.png)
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/resultado_final_Summernote.png)
 
 ### Expresiones de Gratitud 🎁
 

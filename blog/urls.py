@@ -1,8 +1,10 @@
 
 from django.urls import path
 
-from . views import inicio
+from . views import inicio, registrar_post, listar_posts
 
 urlpatterns = [
-    path('admin/', inicio, name='inicio'),
+    path('', inicio, name='inicio'),
+    path('registrar-post/', registrar_post, name='registrar_post'),
+    path('listar-de-posts/', listar_posts, name='listar_posts'),
 ]
