@@ -2,6 +2,10 @@
 
 ##### El proyecto "Gestor de Posts con Editor Summernote en Django" se centra en la creación de una aplicación web utilizando el framework Django de Python. El objetivo principal es permitir a los usuarios crear y gestionar publicaciones de manera intuitiva y dinámica mediante el uso del editor de texto enriquecido Summernote.
 
+#### Summernote es un editor WYSIWYG (Lo que ves es lo que obtienes) de código abierto que se puede integrar fácilmente en aplicaciones web Django para permitir a los usuarios crear contenido enriquecido de manera intuitiva.
+
+#### Summernote proporciona una serie de características útiles, como opciones de formato de texto,tipo de letras, tamaño de letras, inserción de imágenes, videos, enlaces, listas, tablas, entre otros elementos de contenido. Su integración en Django permite una experiencia de edición de contenido más intuitiva y flexible para los usuarios finales.
+
 1.  Crear un entorno virtual
 
         Opción 1: Crear entorno virtual con el paquete virtualenv
@@ -106,6 +110,10 @@
 #### Resultado final
 
 ![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/resultado_final_Summernote.png)
+
+### Documentación oficial
+
+        https://summernote.org
 
 ### Expresiones de Gratitud 🎁
 
