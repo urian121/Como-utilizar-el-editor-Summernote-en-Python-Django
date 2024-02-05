@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages  # Para usar mensajes flash
 from . models import Post
 
 
@@ -21,6 +22,8 @@ def registrar_post(request):
         )
         post.save()
 
+        messages.success(
+            request, f"Felicitaciones, el post fue registrado correctamente  😉")
         return redirect('inicio')
     return redirect('inicio')
 
